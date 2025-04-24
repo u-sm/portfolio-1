@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Set global scroll snap and smooth behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff2f2; /* light red background */
+  color: #1f1f1f;
+}
+
+/* Scroll snapping */
+main {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+/* Section snap alignment */
+section {
+  scroll-snap-align: start;
+}
+
+/* Optional: Add custom underline hover for nav links */
+nav ul li a {
+  position: relative;
+  display: inline-block;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #cc4c4c;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Optional blob background */
+body::before {
+  content: "";
+  position: fixed;
+  top: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: url('/blob.svg') no-repeat center center;
+  background-size: contain;
+  opacity: 0.05;
+  z-index: -1;
+}

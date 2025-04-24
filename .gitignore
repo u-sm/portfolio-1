@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# production
+.out/
+.next/
+build/
+dist/
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.*.local
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# vercel
+.vercel/
+
+# IDEs & editors
+.vscode/
+.idea/
+
+# Optional: Mac system files
+Thumbs.db
