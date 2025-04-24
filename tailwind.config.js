@@ -1,6 +1,11 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: 'class',
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: [
+    './pages/**/*.{js,jsx,ts,tsx}',       // if you have pages/ at root
+    './src/pages/**/*.{js,jsx,ts,tsx}',   // if you used src/pages/
+    './components/**/*.{js,jsx,ts,tsx}',
+    './src/components/**/*.{js,jsx,ts,tsx}',
+  ],
   theme: {
     extend: {
       colors: {
@@ -15,8 +20,9 @@ module.exports = {
       },
       boxShadow: {
         'lg-soft': '0 10px 15px rgba(255,107,107,0.15)',
-      }
+      },
     },
   },
+  darkMode: 'class',
   plugins: [],
 };
