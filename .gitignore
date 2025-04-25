@@ -24,6 +24,7 @@ package-lock.json
 
 # IDEs & editors
 .vscode/
+.vs/
 .idea/
 
 # Optional: Mac system files
