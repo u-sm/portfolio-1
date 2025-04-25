@@ -30,7 +30,7 @@ export default function Hero() {
                 <motion.a
                     href="mailto:usman@outlook.in"
                     className="px-6 py-3 bg-primary text-white rounded-2xl shadow-lg-soft hover:shadow-lg transition dark:bg-white dark:text-primary"
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.01 }}
                 >
                     Let’s Connect
                 </motion.a>

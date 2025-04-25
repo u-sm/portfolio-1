@@ -3,14 +3,17 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import ProjectModal from './ProjectModal';
+import Image from 'next/image'
+import dynamic from 'next/dynamic'
+
+const ProjectModal = dynamic(() => import('./ProjectModal'), { ssr: false })
 
 const projects = [
     {
         title: 'Microsite Game SPA',
         tech: ['.NET', 'C#'],
         desc: 'Interactive one-page game prototype.',
-        image: '/images/microsite-preview.jpg', // add placeholder in public/images
+        image: '/images/blackPattern1.jpg', // add images in public/images
         demoLink: '#',
         codeLink: '#',
     },
@@ -18,7 +21,7 @@ const projects = [
         title: 'Project Placeholder #2',
         tech: ['React', 'Tailwind'],
         desc: 'Details coming soon...',
-        image: '/images/placeholder.png',
+        image: '/images/whiteHexPattern.png',
         demoLink: '#',
         codeLink: '#',
     },
@@ -44,9 +47,11 @@ export default function Projects() {
                         transition={{ delay: i * 0.2, duration: 0.6 }}
                         onClick={() => setSelected(p)}
                     >
-                        <img
+                        <Image
                             src={p.image}
                             alt={p.title}
+                            width={600}       // approximate card width
+                            height={360}
                             className="w-full h-48 object-cover"
                         />
                         <div className="p-4 bg-slateLight dark:bg-slateDark">

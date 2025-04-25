@@ -19,7 +19,7 @@ module.exports = {
         body: ['Inter', 'sans-serif'],
       },
       boxShadow: {
-        'lg-soft': '0 10px 15px rgba(255,107,107,0.15)',
+        'lg-soft': '0 10px 15px rgba(0,0,0,0.1)',
       },
     },
   },
