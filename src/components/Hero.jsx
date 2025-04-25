@@ -36,13 +36,14 @@ export default function Hero() {
                 </motion.a>
                 <motion.a
                     href="/DummyResume.pdf"
-                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="px-6 py-3 border-2 border-primary text-primary rounded-2xl hover:bg-primary hover:text-white transition dark:border-accent dark:text-accent dark:hover:bg-accent dark:hover:text-slateDark"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.9 }}
                 >
-                    Download Resume
+                    View Resume
                 </motion.a>
             </div>
         </motion.section>
