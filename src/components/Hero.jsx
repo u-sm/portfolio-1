@@ -31,7 +31,6 @@ export default function Hero() {
                 <AnimatedButton as="a"
                     href="mailto:usmank@outlook.in"
                     className="button-ripple px-6 py-3 bg-primary text-white rounded-2xl shadow-lg-soft hover:shadow-lg transition dark:bg-white dark:text-primary"
-                    whileHover={{ scale: 1.02 }}
                 >
                     Let’s Connect
                 </AnimatedButton>
