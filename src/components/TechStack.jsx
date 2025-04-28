@@ -6,7 +6,7 @@ export default function TechStack() {
     return (
         <motion.section
             id="tech"
-            className="px-8 sm:px-16 py-20 bg-white text-slateDark dark:bg-slateDark dark:text-slateLight space-y-6"
+            className="px-8 sm:px-16 py-20 bg-slateLight/30 text-slateDark dark:bg-slateDark/30 backdrop-blur-md dark:text-slateLight space-y-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}

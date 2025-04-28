@@ -20,7 +20,7 @@ export default function Experience() {
     return (
         <motion.section
             id="experience"
-            className="px-8 sm:px-16 py-20 bg-slateLight text-slateDark dark:bg-slateDark dark:text-slateLight space-y-8"
+            className="px-8 sm:px-16 py-20 bg-slateLight/30 text-slateDark dark:bg-slateDark/30 backdrop-blur-md dark:text-slateLight space-y-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}

@@ -31,7 +31,7 @@ export default function Projects() {
     const [selected, setSelected] = useState(null);
 
     return (
-        <section
+        <motion.section
             id="projects"
             className="px-8 sm:px-16 py-20 bg-white text-slateDark dark:bg-slateDark dark:text-slateLight"
         >
@@ -69,6 +69,6 @@ export default function Projects() {
             {selected && (
                 <ProjectModal project={selected} onClose={() => setSelected(null)} />
             )}
-        </section>
+        </motion.section>
     );
 }
