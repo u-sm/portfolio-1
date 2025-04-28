@@ -98,7 +98,7 @@ export default function Navbar() {
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="md:hidden bg-white/50 dark:bg-slateDark/50 backdrop-blur-lg"
+                                className="md:hidden bg-white/50 dark:bg-slateDark/50 backdrop-blur-lg shadow-md"
                             >
                                 <ul className="flex flex-col px-6 pb-4 space-y-4 font-body text-lg">
                                     {links.map(({ label, href }) => (
