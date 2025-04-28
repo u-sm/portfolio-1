@@ -46,8 +46,8 @@ export default function Contact() {
                 {/* Email Link */}
                 <AnimatedButton
                     as="a"
-                    href="mailto:usman@outlook.in"
-                    className="bg-primary text-white rounded-2xl px-6 py-3"
+                    href="mailto:usmank@outlook.in"
+                    className="button-ripple bg-primary text-white rounded-2xl px-6 py-3"
                     whileHover={{ scale: 1.05 }}
                 >
                     Email Me
@@ -60,8 +60,8 @@ export default function Contact() {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.4, duration: 0.6 }}
                 >
-                    {[{ icon: Github, href: 'https://github.com/yourusername' },
-                    { icon: Linkedin, href: 'https://linkedin.com/in/yourusername' }].map(
+                    {[{ icon: Github, href: 'https://github.com/u-sm' },
+                    { icon: Linkedin, href: 'https://linkedin.com/in/usmank-x' }].map(
                         ({ icon: Icon, href }, i) => (
                             <motion.a
                                 key={i}
