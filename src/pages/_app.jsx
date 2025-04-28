@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }) {
         <ThemeProvider attribute="class" enableSystem defaultTheme="light">
             <FloatingBlobs />
             <TransitionContext.Provider value={{ isTransitioning, triggerTransition }}>
-                <CustomCursor />
+                {/*<CustomCursor />*/}
                 <Navbar />
                 <TransitionOverlay />
                 <Component {...pageProps} />

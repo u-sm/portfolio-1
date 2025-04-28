@@ -31,7 +31,7 @@ export default function Experience() {
                 {roles.map((r) => (
                     <div
                         key={r.company}
-                        className="p-6 bg-white rounded-2xl shadow-lg-soft hover:shadow-lg transition hover:scale-[1.01] dark:bg-slateDark"
+                        className="p-6 bg-white/90 rounded-2xl shadow-lg-soft hover:shadow-lg transition hover:scale-[1.01] dark:bg-slateDark/90"
                     >
                         <h3 className="font-heading text-2xl dark:text-slateLight">{r.company}</h3>
                         <p className="font-body text-sm italic mt-1 text-primary dark:text-accent">

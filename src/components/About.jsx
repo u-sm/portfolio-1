@@ -10,7 +10,7 @@ const stats = [
 
 export default function About() {
     return (
-        <section
+        <motion.section
             id="about"
             className="px-8 sm:px-16 py-20 bg-white text-slateDark dark:bg-slateDark dark:text-slateLight"
         >
@@ -41,7 +41,7 @@ export default function About() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, amount: 0.3 }}
                             transition={{ delay: 0.3 + i * 0.2, duration: 0.6 }}
-                            className="flex flex-col items-center p-6 bg-slateLight rounded-2xl shadow-lg-soft dark:bg-slateDark"
+                            className="flex flex-col items-center p-6 bg-white/90 rounded-2xl shadow-lg-soft dark:bg-slateDark/90"
                         >
                             <Icon className="w-8 h-8 text-primary mb-2" />
                             <span className="font-heading text-2xl">{value}</span>
@@ -52,6 +52,6 @@ export default function About() {
                     ))}
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 }
