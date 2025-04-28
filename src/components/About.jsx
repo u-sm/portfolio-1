@@ -5,7 +5,7 @@ import { Code, Briefcase, Coffee } from 'lucide-react';
 const stats = [
     { icon: Code, label: 'Projects', value: 5 },
     { icon: Briefcase, label: 'Experience (months)', value: 4 },
-    { icon: Coffee, label: 'Cups of Coffee', value: 1000 },
+    { icon: Coffee, label: 'Cups of Coffee', value: 792 },
 ];
 
 export default function About() {
