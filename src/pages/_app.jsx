@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import { useState } from 'react';
 import TransitionContext from '../context/TransitionContext';
 import TransitionOverlay from '../components/TransitionOverlay';
+import FloatingBlobs from '../components/FloatingBlobs';
 
 function MyApp({ Component, pageProps }) {
     const [isTransitioning, setIsTransitioning] = useState(false);
@@ -24,6 +25,7 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <ThemeProvider attribute="class" enableSystem defaultTheme="light">
+            <FloatingBlobs />
             <TransitionContext.Provider value={{ isTransitioning, triggerTransition }}>
                 <CustomCursor />
                 <Navbar />
