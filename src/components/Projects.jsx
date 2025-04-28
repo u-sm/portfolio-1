@@ -40,7 +40,7 @@ export default function Projects() {
                 {projects.map((p, i) => (
                     <motion.div
                         key={p.title}
-                        className="relative cursor-pointer overflow-hidden rounded-2xl shadow-lg-soft hover:shadow-lg transition"
+                        className="relative cursor-pointer overflow-hidden rounded-2xl shadow-lg-soft hover:shadow-lift transition-shadow duration-200 ease-out"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
