@@ -6,7 +6,7 @@ export default function Hero() {
     return (
         <motion.section
             id="home"
-            className="min-h-screen flex flex-col justify-center items-start px-8 sm:px-16 bg-slateLight text-slateDark dark:bg-slateDark dark:text-slateLight"
+            className="min-h-screen flex flex-col justify-center items-start px-8 sm:px-16 bg-slateLight/80 text-slateDark dark:bg-slateDark/80 dark:text-slateLight"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
