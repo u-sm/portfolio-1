@@ -39,8 +39,8 @@ export default function Navbar() {
                 <motion.nav
                     initial={{ y: -50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
-                    exit={{ y: -50, opacity: 0, transition: { duration: 0.3 } }}
+                    transition={{ duration: 0.4, ease: 'easeOut' }}
+                    exit={{ y: -50, opacity: 0, transition: { duration: 0.2 } }}
                     className="fixed top-0 left-0 w-full z-50 bg-white/60 dark:bg-slateDark/60 backdrop-blur-lg shadow-md"
                 >
                     <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">

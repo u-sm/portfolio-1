@@ -1,23 +1,24 @@
 // src/pages/_app.jsx
 import '../styles/globals.css';
 import { ThemeProvider } from 'next-themes';
-import CustomCursor from '../components/CustomCursor';
-import Navbar from '../components/Navbar';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
+import Navbar from '../components/Navbar';
+import CustomCursor from '../components/CustomCursor';
 import TransitionContext from '../context/TransitionContext';
 import TransitionOverlay from '../components/TransitionOverlay';
 import FloatingBlobs from '../components/FloatingBlobs';
 
 function MyApp({ Component, pageProps }) {
     const [isTransitioning, setIsTransitioning] = useState(false);
+    const router = useRouter();
+    const isBlogRoute = router.pathname.startsWith('/blog');
 
     const triggerTransition = (hash) => {
         setIsTransitioning(true);
-        // fade-in overlay
         setTimeout(() => {
             window.location.hash = hash;
         }, 300);
-        // fade-out overlay
         setTimeout(() => {
             setIsTransitioning(false);
         }, 600);
@@ -25,11 +26,18 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <ThemeProvider attribute="class" enableSystem defaultTheme="light">
-            <FloatingBlobs />
+            {/* Floating blobs only on non-blog pages */}
+            {!isBlogRoute && <FloatingBlobs />}
+
             <TransitionContext.Provider value={{ isTransitioning, triggerTransition }}>
-                {/*<CustomCursor />*/}
-                <Navbar />
+                {/* Custom cursor only on non-blog pages */}
+                {!isBlogRoute && <CustomCursor />}
+
+                {/* Main navbar only on non-blog pages */}
+                {!isBlogRoute && <Navbar />}
                 <TransitionOverlay />
+
+                {/* Page content */}
                 <Component {...pageProps} />
             </TransitionContext.Provider>
         </ThemeProvider>
