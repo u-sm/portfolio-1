@@ -3,7 +3,6 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import Image from 'next/image'
 import dynamic from 'next/dynamic'
 
 const ProjectModal = dynamic(() => import('./ProjectModal'), { ssr: false })
@@ -47,11 +46,9 @@ export default function Projects() {
                         transition={{ delay: i * 0.2, duration: 0.6 }}
                         onClick={() => setSelected(p)}
                     >
-                        <Image
+                        <img
                             src={p.image}
                             alt={p.title}
-                            width={600}       // approximate card width
-                            height={360}
                             className="w-full h-48 object-cover"
                         />
                         <div className="p-4 bg-slateLight dark:bg-slateDark">
