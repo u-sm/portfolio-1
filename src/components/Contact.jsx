@@ -58,7 +58,7 @@ export default function Contact() {
                 {/* Email Link */}
                 <AnimatedButton
                     as="a"
-                    href="mailto:usmank@outlook.in"
+                    href="mailto:usmank+portfolio@outlook.in"
                     className="button-ripple bg-primary text-white rounded-2xl px-6 py-3"
                     whileHover={{ scale: 1.05 }}
                 >

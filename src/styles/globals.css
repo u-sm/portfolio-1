@@ -56,7 +56,6 @@ body::before {
   left: -100px;
   width: 500px;
   height: 500px;
-  background: url('/blob.svg') no-repeat center center;
   background-size: contain;
   opacity: 0.05;
   z-index: -1;

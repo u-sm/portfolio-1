@@ -29,8 +29,8 @@ export default function Hero() {
             </motion.p>
             <div className="mt-8 flex space-x-4">
                 <AnimatedButton as="a"
-                    href="mailto:usmank@outlook.in"
-                    className="button-ripple px-6 py-3 bg-primary text-white rounded-2xl shadow-lg-soft hover:shadow-lg transition dark:bg-white dark:text-primary"
+                    href="mailto:usmank+portfolio@outlook.in"
+                    className="button-ripple px-6 py-3 bg-primary text-white font-bold rounded-2xl shadow-lg-soft hover:shadow-lg transition dark:bg-white dark:text-red-500"
                 >
                     Let’s Connect
                 </AnimatedButton>
