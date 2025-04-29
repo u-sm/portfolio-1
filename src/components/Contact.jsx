@@ -1,12 +1,24 @@
 // src/components/Contact.jsx
 'use client';
 
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedButton from './AnimatedButton';
 import { Github, Linkedin } from 'lucide-react';
 import ParticlesBackground from './ParticlesBackground';
 
 export default function Contact() {
+    // Default to web URL, switch to app scheme on mobile
+    const [linkedinUrl, setLinkedinUrl] = useState(
+        'https://linkedin.com/in/usmank-x'
+    );
+
+    useEffect(() => {
+        if (/Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+            setLinkedinUrl('linkedin://in/usmank-x');
+        }
+    }, []);
+
     return (
         // 1) Semi-transparent gradient + overflow-hidden wrapper
         <div className="relative overflow-hidden bg-gradient-to-br from-slateLight/50 to-white/50 dark:from-slateDark/50 dark:to-gray-900/50">
@@ -61,7 +73,7 @@ export default function Contact() {
                     transition={{ delay: 0.4, duration: 0.6 }}
                 >
                     {[{ icon: Github, href: 'https://github.com/u-sm' },
-                    { icon: Linkedin, href: 'https://linkedin.com/in/usmank-x' }].map(
+                      { icon: Linkedin, href: linkedinUrl }].map(
                         ({ icon: Icon, href }, i) => (
                             <motion.a
                                 key={i}

@@ -2,14 +2,14 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code, Database, Terminal, GitBranch, Box } from 'lucide-react';
+import { Code, Database, Terminal, GitBranch, BrainCircuit } from 'lucide-react';
 
 const techSkills = [
     { name: '.NET', icon: Code, level: 85 },
     { name: 'MSSQL', icon: Database, level: 75 },
     { name: 'Linux', icon: Terminal, level: 80 },
     { name: 'Git', icon: GitBranch, level: 90 },
-    { name: 'Docker', icon: Box, level: 70 },
+    { name: 'AI & LLMs', icon: BrainCircuit, level: 60},
 ];
 
 export default function TechStack() {
