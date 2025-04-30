@@ -59,7 +59,7 @@ export default function Contact() {
                 <AnimatedButton
                     as="a"
                     href="mailto:usmank+portfolio@outlook.in"
-                    className="button-ripple bg-primary text-white rounded-2xl px-6 py-3"
+                    className="button-ripple bg-primary dark:bg-slateLight text-white dark:text-slateDark rounded-2xl px-6 py-3"
                     whileHover={{ scale: 1.05 }}
                 >
                     Email Me

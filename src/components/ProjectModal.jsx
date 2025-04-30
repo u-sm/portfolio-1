@@ -17,6 +17,7 @@ export default function ProjectModal({ project, onClose }) {
             >
                 <button
                     onClick={onClose}
+                    data-cursor="pointer"
                     className="absolute top-4 right-4 text-slateDark dark:text-slateLight"
                 >
                     <X className="w-6 h-6" />
@@ -43,7 +44,8 @@ export default function ProjectModal({ project, onClose }) {
                         href={project.demoLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-4 py-2 bg-primary text-white rounded-2xl hover:bg-primary-dark transition"
+                        data-cursor="pointer"
+                        className="px-4 py-2 border-2 border-primary text-primary rounded-2xl hover:bg-primary hover:text-white transition"
                     >
                         Live Demo
                     </a>
@@ -51,6 +53,7 @@ export default function ProjectModal({ project, onClose }) {
                         href={project.codeLink}
                         target="_blank"
                         rel="noopener noreferrer"
+                        data-cursor="pointer"
                         className="px-4 py-2 border-2 border-primary text-primary rounded-2xl hover:bg-primary hover:text-white transition"
                     >
                         Source Code

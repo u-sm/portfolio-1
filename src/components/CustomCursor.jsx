@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 import { MousePointer2, Pointer } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 export default function CustomCursor() {
     // raw coords
@@ -16,7 +17,14 @@ export default function CustomCursor() {
     // which icon to show
     const [cursorVariant, setCursorVariant] = useState('default');
 
+    // grab the current theme
+    const { resolvedTheme } = useTheme();
+    const isDark = resolvedTheme === 'dark';
+
+    const [mounted, setMounted] = useState(false);
+
     useEffect(() => {
+        setMounted(true);
         const move = (e) => {
             mouseX.set(e.clientX);
             mouseY.set(e.clientY);
@@ -36,6 +44,8 @@ export default function CustomCursor() {
         };
     }, [mouseX, mouseY]);
 
+    if (!mounted || !resolvedTheme) return null; // or a loading placeholder
+
     // pick icon based on variant
     const Icon =
         cursorVariant === 'pointer'
@@ -43,7 +53,15 @@ export default function CustomCursor() {
             : MousePointer2;
 
     const iconSize = cursorVariant === 'pointer' ? 24 : 16;
-    const iconColor = cursorVariant === 'pointer' ? '#1C1311' : '#080505';
+    // default arrow: dark/light neutral; pointer: theme primary vs accent
+    const iconColor =
+            cursorVariant === 'pointer'
+               ? isDark
+                ? '#FFB3AB'   // dark mode button(pointer)
+                : '#B80000'   // light mode button(pointer)
+            : isDark
+                ? '#F5F5F5'     // dark mode cursor
+                : '#2E2E2E';    // light mode cursor
 
     return (
         <>
