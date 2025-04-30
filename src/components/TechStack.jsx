@@ -43,7 +43,7 @@ export default function TechStack() {
                                 className="h-2 bg-primary dark:bg-accent"
                                 initial={{ width: 0 }}
                                 animate={{ width: `${level}%` }}
-                                transition={{ delay: i * 0.05 + 0.3, duration: 1 }}
+                                transition={{ delay: i * 0.05 + 0.3, duration: 0.8 }}
                             />
                         </div>
                         <span className="block mt-2 font-body text-sm text-gray-600 dark:text-gray-400">

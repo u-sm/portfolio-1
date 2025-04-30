@@ -40,10 +40,11 @@ export default function Projects() {
                     <motion.div
                         key={p.title}
                         className="relative cursor-pointer overflow-hidden rounded-2xl shadow-lg-soft hover:shadow-lift transition-shadow duration-200 ease-out"
+                        whileHover={{ scale: 1.02 }}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.2 }}
-                        transition={{ delay: i * 0.2, duration: 0.6 }}
+                        transition={{ delay: i * 0.2, duration: 0.2 }}
                         onClick={() => setSelected(p)}
                     >
                         <img
@@ -51,7 +52,7 @@ export default function Projects() {
                             alt={p.title}
                             className="w-full h-48 object-cover"
                         />
-                        <div className="p-4 bg-slateLight dark:bg-slateDark">
+                        <div className="p-4 bg-slateLight/80 dark:bg-slateDark/80">
                             <h3 className="font-heading text-2xl mb-1 dark:text-slateLight">
                                 {p.title}
                             </h3>
