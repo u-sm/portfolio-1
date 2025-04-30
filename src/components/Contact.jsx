@@ -80,6 +80,7 @@ export default function Contact() {
                                 href={href}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-cursor="pointer"
                                 className="text-2xl text-primary dark:text-accent hover:text-primary-dark dark:hover:text-accent transition"
                                 whileHover={{ scale: 1.2 }}
                                 whileTap={{ scale: 0.9 }}

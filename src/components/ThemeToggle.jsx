@@ -32,7 +32,8 @@ export default function ThemeToggle() {
 
   return (
     <button
-      aria-label="Toggle Dark Mode"
+          aria-label="Toggle Dark Mode"
+          data-cursor="pointer"
       className="
         p-2 rounded-full 
         bg-slateLight dark:bg-slateDark 

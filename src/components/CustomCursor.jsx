@@ -1,34 +1,77 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { MousePointer2, Pointer } from 'lucide-react';
 
 export default function CustomCursor() {
-    const [position, setPosition] = useState({ x: 0, y: 0 })
-    const [isClient, setIsClient] = useState(false)
+    // raw coords
+    const mouseX = useMotionValue(-100);
+    const mouseY = useMotionValue(-100);
+
+    // snappy springs
+    const cursorX = useSpring(mouseX, { stiffness: 1200, damping: 80 });
+    const cursorY = useSpring(mouseY, { stiffness: 1200, damping: 80 });
+
+    // which icon to show
+    const [cursorVariant, setCursorVariant] = useState('default');
 
     useEffect(() => {
-        setIsClient(true)
-        const handleMouseMove = (e) => {
-            setPosition({ x: e.clientX, y: e.clientY })
-        }
+        const move = (e) => {
+            mouseX.set(e.clientX);
+            mouseY.set(e.clientY);
+        };
 
-        window.addEventListener('mousemove', handleMouseMove)
+        const handleMouseOver = (e) => {
+            const el = e.target.closest('[data-cursor]');
+            setCursorVariant(el ? el.getAttribute('data-cursor') : 'default');
+        };
+
+        window.addEventListener('mousemove', move);
+        window.addEventListener('mouseover', handleMouseOver);
+
         return () => {
-            window.removeEventListener('mousemove', handleMouseMove)
-        }
-    }, [])
+            window.removeEventListener('mousemove', move);
+            window.removeEventListener('mouseover', handleMouseOver);
+        };
+    }, [mouseX, mouseY]);
 
-    if (!isClient) return null
+    // pick icon based on variant
+    const Icon =
+        cursorVariant === 'pointer'
+            ? Pointer
+            : MousePointer2;
+
+    const iconSize = cursorVariant === 'pointer' ? 24 : 16;
+    const iconColor = cursorVariant === 'pointer' ? '#1C1311' : '#080505';
 
     return (
         <>
-            <style>{`body { cursor: none !important; }`}</style>
+            <style>{`
+        @media (min-width: 768px) {
+         body,
+         a,
+         button,
+         [data-cursor] {
+           cursor: none !important;
+         }
+       }
+      `}</style>
+
             <motion.div
-                className="fixed z-[9999] top-0 left-0 w-6 h-6 rounded-full border border-red-500 bg-red-300/50 pointer-events-none mix-blend-difference"
-                animate={{ x: position.x - 12, y: position.y - 12 }}
-                transition={{ type: 'spring', stiffness: 1100, damping: 60 }}
-            />
+                className="fixed top-0 left-0 z-[9999] pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
+                style={{
+                    translateX: cursorX,
+                    translateY: cursorY
+                }}
+                animate={{
+                    scale: cursorVariant === 'pointer' ? 1.1 : 1,
+                    opacity: 1
+                }}
+                transition={{ type: 'spring', stiffness: 600, damping: 40 }}
+            >
+                <Icon size={iconSize} color={iconColor} strokeWidth={2} />
+            </motion.div>
         </>
-    )
+    );
 }

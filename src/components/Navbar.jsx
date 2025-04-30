@@ -47,6 +47,7 @@ export default function Navbar() {
                         {/* Logo / Title */}
                         <button
                             onClick={() => handleNavClick('#home')}
+                            data-cursor="pointer"
                             className="font-heading text-xl text-slateDark dark:text-slateLight focus:outline-none"
                         >
                             Usman A. Khan
@@ -61,6 +62,7 @@ export default function Navbar() {
                                         <li key={href} className="relative group">
                                             <button
                                                 onClick={() => handleNavClick(href)}
+                                                data-cursor="pointer"
                                                 className={`relative z-10 px-1 text-slateDark dark:text-slateLight focus:outline-none ${active ? 'font-medium' : 'font-normal'
                                                     }`}
                                             >
