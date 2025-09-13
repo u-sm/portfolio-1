@@ -11,15 +11,15 @@ const projects = [
     {
         title: 'Microsite Game SPA',
         tech: ['.NET', 'C#'],
-        desc: 'Interactive one-page game prototype.',
+        desc: 'Designed and developed backend for and interactive promotional site.',
         image: '/images/blackPattern1.jpg', // add images in public/images
         demoLink: '#',
         codeLink: '#',
     },
     {
-        title: 'Project Placeholder #2',
+        title: 'Portfolio Website',
         tech: ['React', 'Tailwind'],
-        desc: 'Details coming soon...',
+        desc: 'Interactive and dynamic protfolio website',
         image: '/images/whiteHexPattern.png',
         demoLink: '#',
         codeLink: '#',
