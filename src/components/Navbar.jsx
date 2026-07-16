@@ -22,10 +22,13 @@ export default function Navbar() {
     const [open, setOpen] = useState(false);
     const { triggerTransition } = useContext(TransitionContext);
     const [mounted, setMounted] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        // delay mount to allow entrance animation
         setMounted(true);
+        const onScroll = () => setScrolled(window.scrollY > 20);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
     const handleNavClick = (href) => {
@@ -37,25 +40,32 @@ export default function Navbar() {
         <AnimatePresence>
             {mounted && (
                 <motion.nav
+                    role="navigation"
+                    aria-label="Main navigation"
                     initial={{ y: -50, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
                     exit={{ y: -50, opacity: 0, transition: { duration: 0.3 } }}
-                    className="fixed top-0 left-0 w-full z-50 bg-white/60 dark:bg-slateDark/60 backdrop-blur-lg shadow-md"
+                    className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+                        scrolled
+                            ? 'bg-white/80 dark:bg-slateDark/80 backdrop-blur-xl shadow-lg-soft border-b border-primary/5 dark:border-white/5'
+                            : 'bg-transparent'
+                    }`}
                 >
-                    <div className="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
-                        {/* Logo / Title */}
+                    <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+                        {/* Logo */}
                         <button
                             onClick={() => handleNavClick('#home')}
                             data-cursor="pointer"
-                            className="font-heading text-xl text-slateDark dark:text-slateLight focus:outline-none"
+                            aria-label="Go to home section"
+                            className="font-heading text-lg font-bold text-slateDark dark:text-slateLight focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md tracking-tight"
                         >
                             Usman A. Khan
                         </button>
 
-                        {/* Desktop Links */}
-                        <div className="hidden md:flex items-center space-x-8">
-                            <ul className="flex space-x-8 font-body text-sm">
+                        {/* Desktop links */}
+                        <div className="hidden md:flex items-center gap-8">
+                            <ul className="flex items-center gap-6 font-body text-sm" role="list">
                                 {links.map(({ label, href }) => {
                                     const active = asPath === href;
                                     return (
@@ -63,14 +73,19 @@ export default function Navbar() {
                                             <button
                                                 onClick={() => handleNavClick(href)}
                                                 data-cursor="pointer"
-                                                className={`relative z-10 px-1 text-slateDark dark:text-slateLight focus:outline-none ${active ? 'font-medium' : 'font-normal'
-                                                    }`}
+                                                aria-current={active ? 'page' : undefined}
+                                                className={`relative z-10 px-1 py-1 font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded transition-colors duration-200 ${
+                                                    active
+                                                        ? 'text-primary dark:text-accent'
+                                                        : 'text-slateDark/70 dark:text-slateLight/70 hover:text-slateDark dark:hover:text-slateLight'
+                                                }`}
                                             >
                                                 {label}
                                             </button>
-                                            {/* Animated underline */}
                                             <span
-                                                className={`absolute left-0 bottom-0 h-0.5 bg-primary transition-all duration-300 ${active ? 'w-full' : 'w-0'} group-hover:w-full`}
+                                                className={`absolute left-0 bottom-0 h-0.5 bg-primary dark:bg-accent rounded-full transition-all duration-300 ${
+                                                    active ? 'w-full' : 'w-0'
+                                                } group-hover:w-full`}
                                             />
                                         </li>
                                     );
@@ -79,20 +94,25 @@ export default function Navbar() {
                             <ThemeToggle />
                         </div>
 
-                        {/* Mobile Hamburger */}
-                        <div className="md:hidden flex items-center">
+                        {/* Mobile controls */}
+                        <div className="md:hidden flex items-center gap-3">
                             <ThemeToggle />
-                            <button onClick={() => setOpen(!open)} className="ml-4 p-2 rounded-md focus:outline-none">
+                            <button
+                                onClick={() => setOpen(!open)}
+                                aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
+                                aria-expanded={open}
+                                className="p-2 rounded-lg hover:bg-primary/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary transition"
+                            >
                                 {open ? (
-                                    <X className="w-6 h-6 text-slateDark dark:text-slateLight" />
+                                    <X className="w-5 h-5 text-slateDark dark:text-slateLight" aria-hidden="true" />
                                 ) : (
-                                    <Menu className="w-6 h-6 text-slateDark dark:text-slateLight" />
+                                    <Menu className="w-5 h-5 text-slateDark dark:text-slateLight" aria-hidden="true" />
                                 )}
                             </button>
                         </div>
                     </div>
 
-                    {/* Mobile Menu Panel */}
+                    {/* Mobile menu */}
                     <AnimatePresence>
                         {open && (
                             <motion.div
@@ -100,14 +120,14 @@ export default function Navbar() {
                                 animate={{ opacity: 1, height: 'auto' }}
                                 exit={{ opacity: 0, height: 0 }}
                                 transition={{ duration: 0.2 }}
-                                className="md:hidden bg-white/50 dark:bg-slateDark/50 backdrop-blur-lg shadow-md"
+                                className="md:hidden bg-white/90 dark:bg-slateDark/90 backdrop-blur-xl border-t border-primary/5 dark:border-white/5"
                             >
-                                <ul className="flex flex-col px-6 pb-4 space-y-4 font-body text-lg">
+                                <ul className="flex flex-col px-6 pb-5 pt-2 gap-1 font-body" role="list">
                                     {links.map(({ label, href }) => (
                                         <li key={href}>
                                             <button
                                                 onClick={() => handleNavClick(href)}
-                                                className="block w-full text-left text-slateDark dark:text-slateLight px-2 py-2 rounded-md hover:bg-primary/10 dark:hover:bg-primary-dark/10 transition focus:outline-none"
+                                                className="block w-full text-left text-slateDark dark:text-slateLight px-3 py-3 rounded-lg hover:bg-primary/8 dark:hover:bg-primary/10 transition font-medium text-base focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                                             >
                                                 {label}
                                             </button>

@@ -2,7 +2,6 @@
 import '../styles/globals.css';
 import { ThemeProvider } from 'next-themes';
 import CustomCursor from '../components/CustomCursor';
-import Navbar from '../components/Navbar';
 import { useState } from 'react';
 import TransitionContext from '../context/TransitionContext';
 import TransitionOverlay from '../components/TransitionOverlay';
@@ -13,22 +12,19 @@ function MyApp({ Component, pageProps }) {
 
     const triggerTransition = (hash) => {
         setIsTransitioning(true);
-        // fade-in overlay
         setTimeout(() => {
             window.location.hash = hash;
         }, 300);
-        // fade-out overlay
         setTimeout(() => {
             setIsTransitioning(false);
         }, 600);
     };
 
     return (
-        <ThemeProvider attribute="class" enableSystem defaultTheme="light">
+        <ThemeProvider attribute="class" enableSystem defaultTheme="dark">
             <FloatingBlobs />
             <TransitionContext.Provider value={{ isTransitioning, triggerTransition }}>
                 <CustomCursor />
-                <Navbar />
                 <TransitionOverlay />
                 <Component {...pageProps} />
             </TransitionContext.Provider>

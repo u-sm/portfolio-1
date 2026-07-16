@@ -2,85 +2,186 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Set global scroll snap and smooth behavior */
+/* ============================================================
+   Google Fonts
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============================================================
+   Base
+   ============================================================ */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #fff2f2; /* light red background */
-  color: #1f1f1f;
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scroll snapping */
+/* Remove mandatory snap -- use free-scroll with smooth behavior */
 main {
-  scroll-snap-type: y mandatory;
-  overflow-y: scroll;
-  height: 100vh;
+  overflow-y: auto;
 }
 
-/* Section snap alignment */
 section {
-  scroll-snap-align: start;
+  scroll-margin-top: 80px;
 }
 
-/* Optional: Add custom underline hover for nav links */
-nav ul li a {
+/* ============================================================
+   Noise texture overlay for depth
+   ============================================================ */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   Scrollbar styling
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #6366f1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4f46e5;
+}
+
+/* ============================================================
+   Glassmorphism card utility
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(99, 102, 241, 0.12);
+}
+
+/* ============================================================
+   Navigation underline animation
+   ============================================================ */
+nav ul li a,
+nav ul li button {
   position: relative;
-  display: inline-block;
 }
 
-nav ul li a::after {
+nav ul li a::after,
+nav ul li button::after {
   content: '';
   position: absolute;
   left: 0;
   bottom: -4px;
   width: 100%;
   height: 2px;
-  background-color: #cc4c4c;
+  background: #6366f1;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
-nav ul li a:hover::after {
+nav ul li a:hover::after,
+nav ul li button:hover::after {
   transform: scaleX(1);
 }
 
-/* Optional blob background */
-body::before {
-  content: "";
-  position: fixed;
-  top: -100px;
-  left: -100px;
-  width: 500px;
-  height: 500px;
-  background-size: contain;
-  opacity: 0.05;
-  z-index: -1;
+/* ============================================================
+   Tech badge
+   ============================================================ */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  color: #6366f1;
+  background: rgba(99, 102, 241, 0.08);
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
+.dark .tech-badge {
+  border-color: rgba(165, 180, 252, 0.25);
+  color: #a5b4fc;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.tech-badge:hover {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.5);
+}
+
+/* ============================================================
+   Button ripple effect
+   ============================================================ */
 .button-ripple {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
-    .button-ripple::after {
-        content: '';
-        position: absolute;
-        width: 100px;
-        height: 100px;
-        background: rgba(255,255,255,0.3);
-        border-radius: 50%;
-        transform: scale(0);
-        opacity: 0;
-        transition: transform 0.6s, opacity 1s;
-    }
+.button-ripple::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.8s ease;
+}
 
-    /* on click */
-    .button-ripple:active::after {
-        transform: scale(3);
-        opacity: 1;
-        transition: 0s;
-    }
+.button-ripple:active::after {
+  transform: scale(3);
+  opacity: 1;
+  transition: 0s;
+}
+
+/* ============================================================
+   Section heading accent line
+   ============================================================ */
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(to right, #6366f1, #a5b4fc);
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+/* ============================================================
+   Reduced motion support
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

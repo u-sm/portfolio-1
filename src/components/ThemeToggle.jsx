@@ -9,42 +9,34 @@ export default function ThemeToggle() {
   const { theme, setTheme, systemTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // Only mark as mounted on the client
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Avoid mismatches: render nothing (or a static placeholder) on first render
   if (!mounted) {
     return (
       <button
-        aria-label="Toggle Dark Mode"
-        className="p-2 rounded-full bg-slateLight dark:bg-slateDark shadow-lg-soft transition"
-      >
-        {/* you could render a generic icon here, or leave empty */}
-      </button>
+        aria-label="Toggle color theme"
+        className="p-2 rounded-lg bg-transparent border border-primary/10 dark:border-white/10 transition"
+        disabled
+      />
     );
   }
 
-  // Determine which icon to show
   const currentTheme = theme === 'system' ? systemTheme : theme;
   const isDark = currentTheme === 'dark';
 
   return (
     <button
-          aria-label="Toggle Dark Mode"
-          data-cursor="pointer"
-      className="
-        p-2 rounded-full 
-        bg-slateLight dark:bg-slateDark 
-        shadow-lg-soft hover:scale-105 transition
-      "
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      data-cursor="pointer"
+      className="p-2 rounded-lg border border-primary/10 dark:border-white/10 hover:bg-primary/8 dark:hover:bg-white/8 transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
       {isDark ? (
-        <Sun className="w-5 h-5 text-slateLight" />
+        <Sun className="w-4 h-4 text-accent" aria-hidden="true" />
       ) : (
-        <Moon className="w-5 h-5 text-slateDark" />
+        <Moon className="w-4 h-4 text-slateDark/60" aria-hidden="true" />
       )}
     </button>
   );
