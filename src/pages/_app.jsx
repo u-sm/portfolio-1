@@ -10,14 +10,10 @@ import FloatingBlobs from '../components/FloatingBlobs';
 function MyApp({ Component, pageProps }) {
     const [isTransitioning, setIsTransitioning] = useState(false);
 
-    const triggerTransition = (hash) => {
+    // triggerTransition kept for any component that may still want to call it
+    const triggerTransition = (_hash) => {
         setIsTransitioning(true);
-        setTimeout(() => {
-            window.location.hash = hash;
-        }, 300);
-        setTimeout(() => {
-            setIsTransitioning(false);
-        }, 600);
+        setTimeout(() => setIsTransitioning(false), 650);
     };
 
     return (

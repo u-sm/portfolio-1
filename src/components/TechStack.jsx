@@ -3,39 +3,78 @@
 
 import { motion } from 'framer-motion';
 
+// Icon glyphs using Unicode/text for each tech (no extra packages needed)
 const categories = [
     {
         label: 'Languages',
-        items: ['C#', 'Rust', 'TypeScript', 'Python', 'SQL', 'JavaScript'],
+        emoji: '{ }',
+        color: 'text-accent dark:text-accent',
+        items: [
+            { name: 'C#', glyph: 'C#' },
+            { name: 'Rust', glyph: '⚙' },
+            { name: 'TypeScript', glyph: 'TS' },
+            { name: 'Python', glyph: '🐍' },
+            { name: 'SQL', glyph: '⊞' },
+            { name: 'JavaScript', glyph: 'JS' },
+        ],
     },
     {
         label: 'Frameworks & Platforms',
-        items: ['.NET', 'Next.js', 'React', 'Hardhat'],
+        emoji: '▲',
+        color: 'text-primary dark:text-accent-muted',
+        items: [
+            { name: '.NET', glyph: '.N' },
+            { name: 'Next.js', glyph: '▲' },
+            { name: 'React', glyph: '⚛' },
+            { name: 'Hardhat', glyph: '⛏' },
+        ],
     },
     {
         label: 'Databases & Storage',
-        items: ['SQL Server', 'PostgreSQL', 'Supabase', 'SQLite'],
+        emoji: '🗄',
+        color: 'text-primary dark:text-accent',
+        items: [
+            { name: 'SQL Server', glyph: '⬡' },
+            { name: 'PostgreSQL', glyph: '🐘' },
+            { name: 'Supabase', glyph: '⚡' },
+            { name: 'SQLite', glyph: '◈' },
+        ],
     },
     {
         label: 'DevOps & Tools',
-        items: ['Git', 'Linux', 'Docker', 'CI/CD', 'Vercel', 'GitHub Actions'],
+        emoji: '🛠',
+        color: 'text-primary-dark dark:text-accent-muted',
+        items: [
+            { name: 'Git', glyph: '⎇' },
+            { name: 'Linux', glyph: '🐧' },
+            { name: 'Docker', glyph: '🐳' },
+            { name: 'CI/CD', glyph: '↻' },
+            { name: 'Vercel', glyph: '▲' },
+            { name: 'GitHub Actions', glyph: '⚡' },
+        ],
     },
     {
         label: 'Currently Exploring',
-        items: ['Solidity', 'Tokio (Rust async)', 'WebAssembly'],
+        emoji: '🔭',
+        color: 'text-accent dark:text-accent-muted',
+        items: [
+            { name: 'Solidity', glyph: '◆' },
+            { name: 'Tokio (Rust async)', glyph: '⚙' },
+            { name: 'WebAssembly', glyph: '🕸' },
+        ],
     },
 ];
 
 const containerVariants = {
     hidden: {},
     visible: {
-        transition: { staggerChildren: 0.08 },
+        transition: { staggerChildren: 0.06 },
     },
 };
 
 const badgeVariants = {
-    hidden: { opacity: 0, scale: 0.85 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.25, ease: 'easeOut' } },
+    hidden: { opacity: 0, scale: 0.85, y: 8 },
+    visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.25, ease: 'easeOut' } },
 };
 
 export default function TechStack() {
@@ -57,18 +96,32 @@ export default function TechStack() {
                     </h2>
                 </motion.div>
 
-                <div className="space-y-9">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {categories.map((cat, catIdx) => (
-                        <div key={cat.label}>
-                            <motion.p
-                                initial={{ opacity: 0, y: 10 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true, amount: 0.5 }}
-                                transition={{ delay: catIdx * 0.05, duration: 0.4 }}
-                                className="font-heading text-xs font-semibold text-muted uppercase tracking-widest mb-3"
-                            >
-                                {cat.label}
-                            </motion.p>
+                        <motion.div
+                            key={cat.label}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.3 }}
+                            transition={{ delay: catIdx * 0.08, duration: 0.5 }}
+                            className={`p-5 rounded-2xl bg-white dark:bg-card-dark border border-primary/10 dark:border-accent/10 hover:border-primary/25 dark:hover:border-accent/20 transition-colors duration-200 ${
+                                cat.label === 'Currently Exploring' ? 'sm:col-span-2 lg:col-span-1' : ''
+                            }`}
+                        >
+                            {/* Category header */}
+                            <div className="flex items-center gap-2 mb-4">
+                                <span
+                                    className="w-8 h-8 rounded-lg bg-primary/10 dark:bg-accent/10 flex items-center justify-center text-sm"
+                                    aria-hidden="true"
+                                >
+                                    {cat.emoji}
+                                </span>
+                                <p className="font-heading text-xs font-semibold text-muted uppercase tracking-widest">
+                                    {cat.label}
+                                </p>
+                            </div>
+
+                            {/* Badges */}
                             <motion.div
                                 variants={containerVariants}
                                 initial="hidden"
@@ -78,15 +131,19 @@ export default function TechStack() {
                             >
                                 {cat.items.map((item) => (
                                     <motion.span
-                                        key={item}
+                                        key={item.name}
                                         variants={badgeVariants}
-                                        className="tech-badge cursor-default"
+                                        className="tech-badge cursor-default inline-flex items-center gap-1.5"
+                                        title={item.name}
                                     >
-                                        {item}
+                                        <span aria-hidden="true" className="text-[10px] opacity-70 leading-none">
+                                            {item.glyph}
+                                        </span>
+                                        {item.name}
                                     </motion.span>
                                 ))}
                             </motion.div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
@@ -96,7 +153,7 @@ export default function TechStack() {
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.4, duration: 0.5 }}
-                    className="mt-10 font-body text-sm text-muted"
+                    className="mt-8 font-body text-sm text-muted"
                 >
                     I adapt to project requirements and continuously expand my toolkit. This list reflects technologies I've used in real projects and internship work.
                 </motion.p>

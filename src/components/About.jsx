@@ -54,17 +54,49 @@ export default function About() {
                     </h2>
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-                    {/* Bio */}
+                <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+
+                    {/* Avatar + Bio - takes 3 cols on lg */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.3 }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="space-y-5"
+                        className="lg:col-span-3 space-y-5"
                     >
+                        {/* Avatar card */}
+                        <div className="flex items-center gap-5 mb-6">
+                            {/* Profile photo */}
+                            <div className="relative flex-shrink-0">
+                                <div className="w-20 h-20 rounded-2xl overflow-hidden ring-2 ring-primary/30 dark:ring-accent/30 shadow-glow-sm">
+                                    <img
+                                        src="/images/profile.png"
+                                        alt="Usman Ali Khan"
+                                        className="w-full h-full object-cover object-top"
+                                        loading="eager"
+                                    />
+                                </div>
+                                {/* Online indicator */}
+                                <span
+                                    aria-hidden="true"
+                                    className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white dark:border-card-dark"
+                                />
+                            </div>
+                            <div>
+                                <p className="font-heading text-lg font-bold text-slateDark dark:text-slateLight">
+                                    Usman Ali Khan
+                                </p>
+                                <p className="font-body text-sm text-primary dark:text-accent font-medium">
+                                    Backend Engineer
+                                </p>
+                                <p className="font-body text-xs text-muted mt-0.5">
+                                    Based in Malaysia · Available remotely
+                                </p>
+                            </div>
+                        </div>
+
                         <p className="font-body text-base leading-7 text-slateDark/80 dark:text-slateLight/80">
-                            I'm a backend-focused engineer with a passion for low-level systems, scalable APIs, and developer tooling. I work across C#, Rust, TypeScript, and Python -- and I'm most at home when solving hard infrastructure or architecture problems.
+                            I'm a backend-focused engineer with a passion for low-level systems, scalable APIs, and developer tooling. I work across C#, Rust, TypeScript, and Python - and I'm most at home when solving hard infrastructure or architecture problems.
                         </p>
                         <p className="font-body text-base leading-7 text-slateDark/80 dark:text-slateLight/80">
                             I gained real-world experience as a Backend Engineer Intern at Bitlab Digital, where I built and shipped API endpoints, designed database schemas, and contributed to CI/CD pipelines. Beyond that, I organize technical workshops as Event Coordinator for the APU Red Hat Academy Club.
@@ -75,7 +107,7 @@ export default function About() {
 
                         {/* Focus areas */}
                         <div className="pt-2">
-                            <p className="font-heading text-sm font-semibold text-muted uppercase tracking-widest mb-3">
+                            <p className="font-heading text-xs font-semibold text-muted uppercase tracking-widest mb-3">
                                 Focus Areas
                             </p>
                             <div className="flex flex-wrap gap-2">
@@ -95,21 +127,21 @@ export default function About() {
                         </div>
                     </motion.div>
 
-                    {/* Stats */}
+                    {/* Stats - takes 2 cols on lg */}
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
                         whileInView="visible"
                         viewport={{ once: true, amount: 0.3 }}
-                        className="grid grid-cols-1 gap-5"
+                        className="lg:col-span-2 grid grid-cols-1 gap-5"
                     >
                         {stats.map(({ icon: Icon, label, value, sublabel }) => (
                             <motion.div
                                 key={label}
                                 variants={itemVariants}
-                                className="flex items-start gap-4 p-5 rounded-2xl bg-slateLight dark:bg-slateDark border border-primary/8 dark:border-white/5 hover:border-primary/20 dark:hover:border-accent/15 transition-colors duration-200"
+                                className="flex items-start gap-4 p-5 rounded-2xl bg-slateLight dark:bg-slateDark border border-primary/10 dark:border-accent/10 hover:border-primary/25 dark:hover:border-accent/25 transition-colors duration-200"
                             >
-                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/15 flex items-center justify-center">
+                                <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 dark:bg-accent/10 flex items-center justify-center">
                                     <Icon className="w-5 h-5 text-primary dark:text-accent" aria-hidden="true" />
                                 </div>
                                 <div>

@@ -6,21 +6,15 @@ import { MousePointer2, Pointer } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 export default function CustomCursor() {
-    // raw coords
     const mouseX = useMotionValue(-100);
     const mouseY = useMotionValue(-100);
 
-    // snappy springs
     const cursorX = useSpring(mouseX, { stiffness: 1200, damping: 80 });
     const cursorY = useSpring(mouseY, { stiffness: 1200, damping: 80 });
 
-    // which icon to show
     const [cursorVariant, setCursorVariant] = useState('default');
-
-    // grab the current theme
     const { resolvedTheme } = useTheme();
     const isDark = resolvedTheme === 'dark';
-
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
@@ -44,47 +38,43 @@ export default function CustomCursor() {
         };
     }, [mouseX, mouseY]);
 
-    if (!mounted || !resolvedTheme) return null; // or a loading placeholder
+    if (!mounted || !resolvedTheme) return null;
 
-    // pick icon based on variant
-    const Icon =
-        cursorVariant === 'pointer'
-            ? Pointer
-            : MousePointer2;
-
+    const Icon = cursorVariant === 'pointer' ? Pointer : MousePointer2;
     const iconSize = cursorVariant === 'pointer' ? 24 : 16;
-    // default arrow: dark/light neutral; pointer: theme primary vs accent
+
+    // Cyber Teal brand-aligned cursor colors
     const iconColor =
-            cursorVariant === 'pointer'
-               ? isDark
-                ? '#FFB3AB'   // dark mode button(pointer)
-                : '#B80000'   // light mode button(pointer)
+        cursorVariant === 'pointer'
+            ? isDark
+                ? '#00C9A7'   // bright teal in dark mode
+                : '#007A64'   // dark teal in light mode
             : isDark
-                ? '#F5F5F5'     // dark mode cursor
-                : '#2E2E2E';    // light mode cursor
+                ? '#e8f5f2'   // near-white in dark mode
+                : '#0a1a17';  // near-black in light mode
 
     return (
         <>
             <style>{`
         @media (min-width: 768px) {
-         body,
-         a,
-         button,
-         [data-cursor] {
-           cursor: none !important;
-         }
-       }
+          body,
+          a,
+          button,
+          [data-cursor] {
+            cursor: none !important;
+          }
+        }
       `}</style>
 
             <motion.div
                 className="fixed top-0 left-0 z-[9999] pointer-events-none transform -translate-x-1/2 -translate-y-1/2"
                 style={{
                     translateX: cursorX,
-                    translateY: cursorY
+                    translateY: cursorY,
                 }}
                 animate={{
                     scale: cursorVariant === 'pointer' ? 1.1 : 1,
-                    opacity: 1
+                    opacity: 1,
                 }}
                 transition={{ type: 'spring', stiffness: 600, damping: 40 }}
             >

@@ -7,7 +7,7 @@ const roles = [
         icon: Briefcase,
         company: 'Bitlab Digital',
         title: 'Backend Engineer Intern',
-        period: 'Jan 2025 -- May 2025',
+        period: 'Jan 2025 - May 2025',
         location: 'Malaysia',
         bullets: [
             'Designed and implemented RESTful API endpoints powering client-facing web applications.',
@@ -21,7 +21,7 @@ const roles = [
         icon: Users,
         company: 'APU Red Hat Academy Club',
         title: 'Event Coordinator',
-        period: 'Oct 2024 -- Present',
+        period: 'Oct 2024 - Present',
         location: 'Asia Pacific University',
         bullets: [
             'Organize technical workshops on Linux, open-source tooling, and DevOps fundamentals.',
@@ -53,10 +53,10 @@ export default function Experience() {
 
                 {/* Timeline */}
                 <div className="relative">
-                    {/* Vertical line */}
+                    {/* Desktop vertical line */}
                     <div
                         aria-hidden="true"
-                        className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 via-primary/20 to-transparent hidden sm:block"
+                        className="absolute left-5 top-0 bottom-0 w-px bg-gradient-to-b from-primary/40 dark:from-accent/40 via-primary/20 dark:via-accent/20 to-transparent hidden sm:block"
                     />
 
                     <div className="space-y-10">
@@ -71,15 +71,28 @@ export default function Experience() {
                                     transition={{ delay: i * 0.15, duration: 0.5 }}
                                     className="sm:pl-16 relative"
                                 >
-                                    {/* Timeline dot */}
+                                    {/* Desktop timeline dot */}
                                     <div
                                         aria-hidden="true"
-                                        className="absolute left-0 top-5 w-10 h-10 rounded-xl bg-primary/10 dark:bg-primary/15 border border-primary/20 dark:border-accent/20 items-center justify-center hidden sm:flex"
+                                        className="absolute left-0 top-5 w-10 h-10 rounded-xl bg-primary/10 dark:bg-accent/10 border border-primary/20 dark:border-accent/20 items-center justify-center hidden sm:flex"
                                     >
                                         <Icon className="w-5 h-5 text-primary dark:text-accent" aria-hidden="true" />
                                     </div>
 
-                                    <div className="p-6 bg-white dark:bg-card-dark rounded-2xl border border-primary/6 dark:border-white/5 hover:border-primary/15 dark:hover:border-accent/10 transition-colors duration-200 hover:shadow-lg-soft">
+                                    {/* Mobile: left border line instead of dot */}
+                                    <div className="sm:hidden border-l-2 border-primary/25 dark:border-accent/25 pl-4 mb-0">
+                                        {/* Mobile icon badge */}
+                                        <div className="flex items-center gap-2 mb-3">
+                                            <div className="w-7 h-7 rounded-lg bg-primary/10 dark:bg-accent/10 flex items-center justify-center flex-shrink-0">
+                                                <Icon className="w-4 h-4 text-primary dark:text-accent" aria-hidden="true" />
+                                            </div>
+                                            <span className="font-heading text-xs font-semibold text-primary dark:text-accent uppercase tracking-wider">
+                                                {role.company}
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div className="p-6 bg-white dark:bg-card-dark rounded-2xl border border-primary/8 dark:border-accent/8 hover:border-primary/20 dark:hover:border-accent/15 transition-colors duration-200 hover:shadow-lg-soft">
                                         {/* Header */}
                                         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
                                             <div>

@@ -12,12 +12,15 @@ export default function TransitionOverlay() {
         <AnimatePresence>
             {isTransitioning && (
                 <motion.div
-                    key="overlay"
-                    className="fixed inset-0 bg-primary z-50"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    key="progress-bar"
+                    className="fixed top-0 left-0 h-0.5 z-[9998] pointer-events-none"
+                    style={{
+                        background: 'linear-gradient(to right, #007A64, #00C9A7, #A8FF78)',
+                    }}
+                    initial={{ scaleX: 0, opacity: 1, transformOrigin: 'left' }}
+                    animate={{ scaleX: 1, opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0.5, ease: 'easeOut' }}
                 />
             )}
         </AnimatePresence>

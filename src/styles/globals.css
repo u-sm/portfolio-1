@@ -20,6 +20,234 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  overflow-y: auto;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+/* ============================================================
+   Noise texture overlay for depth
+   ============================================================ */
+.noise-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* ============================================================
+   Scrollbar — Cyber Teal
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #00C9A7;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #007A64;
+}
+
+/* ============================================================
+   Glassmorphism card utility
+   ============================================================ */
+.glass {
+  background: rgba(0, 201, 167, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 201, 167, 0.10);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 122, 100, 0.12);
+}
+
+/* ============================================================
+   Navigation underline animation — Cyber Teal
+   ============================================================ */
+nav ul li a,
+nav ul li button {
+  position: relative;
+}
+
+nav ul li a::after,
+nav ul li button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #00C9A7;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li button:hover::after {
+  transform: scaleX(1);
+}
+
+/* ============================================================
+   Tech badge — Cyber Teal
+   ============================================================ */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: 1px solid rgba(0, 122, 100, 0.30);
+  color: #007A64;
+  background: rgba(0, 122, 100, 0.07);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.dark .tech-badge {
+  border-color: rgba(0, 201, 167, 0.25);
+  color: #00C9A7;
+  background: rgba(0, 201, 167, 0.08);
+}
+
+.tech-badge:hover {
+  background: rgba(0, 122, 100, 0.14);
+  border-color: rgba(0, 122, 100, 0.50);
+}
+
+.dark .tech-badge:hover {
+  background: rgba(0, 201, 167, 0.15);
+  border-color: rgba(0, 201, 167, 0.50);
+}
+
+/* ============================================================
+   Button ripple effect
+   ============================================================ */
+.button-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.button-ripple::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.8s ease;
+}
+
+.button-ripple:active::after {
+  transform: scale(3);
+  opacity: 1;
+  transition: 0s;
+}
+
+/* ============================================================
+   Section heading accent line — Cyber Teal gradient
+   ============================================================ */
+.section-heading::after {
+  content: '';
+  display: block;
+  width: 64px;
+  height: 4px;
+  background: linear-gradient(to right, #007A64, #00C9A7, #A8FF78);
+  border-radius: 2px;
+  margin-top: 10px;
+}
+
+/* ============================================================
+   Nav progress bar transition (replaces full-screen overlay)
+   ============================================================ */
+.nav-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to right, #007A64, #00C9A7, #A8FF78);
+  z-index: 100;
+  animation: progress 0.6s ease-out forwards;
+}
+
+/* ============================================================
+   Terminal code block (hero right panel)
+   ============================================================ */
+.terminal-window {
+  background: rgba(8, 14, 13, 0.85);
+  border: 1px solid rgba(0, 201, 167, 0.20);
+  border-radius: 12px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+}
+
+.light .terminal-window,
+:not(.dark) .terminal-window {
+  background: rgba(14, 25, 23, 0.90);
+  border-color: rgba(0, 122, 100, 0.30);
+}
+
+/* ============================================================
+   Timeline mobile left border
+   ============================================================ */
+.timeline-mobile-line {
+  border-left: 2px solid rgba(0, 201, 167, 0.25);
+  padding-left: 1rem;
+}
+
+/* ============================================================
+   Reduced motion support
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ============================================================
+   Google Fonts
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ============================================================
+   Base
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Remove mandatory snap -- use free-scroll with smooth behavior */
 main {
   overflow-y: auto;
