@@ -29,3 +29,6 @@ package-lock.json
 
 # Optional: Mac system files
 Thumbs.db
+
+# design skill working files
+.taste-skill/

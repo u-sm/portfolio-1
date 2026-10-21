@@ -6,19 +6,17 @@ Personal portfolio built with Next.js 13, Tailwind CSS, and Framer Motion, featu
 
 ## Highlights
 
-- Scroll-snap single-page layout with section anchors (Home, About, Experience, Projects, Tech, Contact)
-- Framer Motion animations and modal project details
-- Custom cursor interactions and floating/particle background effects
-- Theme toggle with system preference support
+- Split layout: a printed card beside a portrait, then each project pinned beside a large picture
+- A working copy of ReserveDesk's booking clash check, with sample bookings
+- Archival photographs and NASA footage, all public domain or free of known restrictions, credited in the footer
+- STIX Two Text throughout, in a tobacco, olive and ochre palette
+- Content lives in `src/data/site.js`
 
 ## Tech Stack
 
 - Next.js 13 (pages router)
 - React 18
-- Tailwind CSS
-- Framer Motion
-- tsParticles (slim)
-- next-themes + lucide-react
+- Plain CSS in `src/styles/globals.css` (Tailwind base reset)
 
 ## Getting Started
 
